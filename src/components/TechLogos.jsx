@@ -134,3 +134,42 @@ export const GraphqlLogo = ({ className = "w-8 h-8" }) => (
     <circle cx="30" cy="46" r="6" fill="white" />
   </svg>
 )
+
+export const ReduxLogo = ({ className = "w-8 h-8" }) => (
+  <svg className={className} viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="128" height="128" rx="24" fill="#764ABC" />
+    <path d="M40 34C51 26 64 26 79 28C92 29 99 37 99 48C99 58 91 65 79 69C72 71 62 73 55 76C46 80 41 86 41 94C41 102 48 108 58 108C72 108 82 102 89 92" stroke="white" strokeWidth="8" strokeLinecap="round" />
+    <path d="M67 34L85 60L67 87" stroke="#A78BFA" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M52 44H60" stroke="white" strokeWidth="6" strokeLinecap="round" />
+  </svg>
+)
+
+export const RedisLogo = ({ className = "w-8 h-8" }) => (
+  <svg className={className} viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="128" height="128" rx="24" fill="#DC382D" />
+    <path d="M32 36C40 29 51 26 64 26C80 26 92 31 96 41C92 47 80 51 64 51C48 51 36 47 32 36Z" fill="#FFB39A" opacity="0.9" />
+    <path d="M32 55C40 48 51 45 64 45C80 45 92 50 96 60C92 66 80 70 64 70C48 70 36 66 32 55Z" fill="#FFD4CA" opacity="0.9" />
+    <path d="M32 74C40 67 51 64 64 64C80 64 92 69 96 79C92 85 80 89 64 89C48 89 36 85 32 74Z" fill="#FFE8E2" opacity="0.9" />
+    <path d="M48 42C52 42 56 45 56 49C56 53 52 56 48 56C44 56 40 53 40 49C40 45 44 42 48 42Z" fill="#DC382D" />
+    <path d="M72 61C76 61 80 64 80 68C80 72 76 75 72 75C68 75 64 72 64 68C64 64 68 61 72 61Z" fill="#DC382D" />
+    <path d="M48 79C52 79 56 82 56 86C56 90 52 93 48 93C44 93 40 90 40 86C40 82 44 79 48 79Z" fill="#DC382D" />
+  </svg>
+)
+
+export const BullMqLogo = ({ className = "w-8 h-8" }) => (
+  <svg className={className} viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="128" height="128" rx="24" fill="#111827" />
+    <path d="M34 32H94V96H34V32Z" stroke="#F97316" strokeWidth="8" strokeLinejoin="round" />
+    <path d="M52 46H76V62H52V46ZM52 68H76V84H52V68Z" fill="#F97316" />
+    <path d="M86 44L96 56L86 68" stroke="#FDBA74" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+)
+
+export const PrismaLogo = ({ className = "w-8 h-8" }) => (
+  <svg className={className} viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="128" height="128" rx="24" fill="#0F172A" />
+    <path d="M64 24L96 84L56 102L32 56L64 24Z" fill="#2D3748" stroke="#6EE7F9" strokeWidth="4" strokeLinejoin="round" />
+    <path d="M64 24L56 102L96 84L64 24Z" fill="#38BDF8" opacity="0.8" />
+    <path d="M48 56L64 24L80 56" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+)

@@ -4,6 +4,7 @@
 
 @theme {
   --font-bebas: "Bebas Neue", cursive;
+  --font-roboto-condensed: "Roboto Condensed", sans-serif;
 }
 
 :root {

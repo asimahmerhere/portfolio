@@ -53,7 +53,7 @@ export function ProjectsSection() {
               <div className="card-body">
                 <div className="flex items-start justify-between gap-4">
                   <h3 className="font-bebas text-[2rem] leading-none text-white sm:text-[2.35rem]">{project.title}</h3>
-                  <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.3em] text-[#9b8cff]">
+                  <span className="font-roboto-condensed text-[10px] font-semibold uppercase tracking-[0.3em] text-[#9b8cff]">
                     {project.duration}
                   </span>
                 </div>
@@ -81,7 +81,7 @@ export function ProjectsSection() {
                   {project.stack.map((tag) => (
                     <span
                       key={`${project.title}-${tag}`}
-                      className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-semibold text-white/80"
+                      className="rounded-xl border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-semibold text-white/80"
                     >
                       {tag}
                     </span>
@@ -95,7 +95,7 @@ export function ProjectsSection() {
                     rel="noreferrer"
                     className="btn btn-block rounded-xs bg-indigo-300 text-black transition-colors duration-300 hover:bg-indigo-400 hover:text-black"
                   >
-                    See on GitHub
+                    GitHub Link
                   </a>
                 </div>
               </div>

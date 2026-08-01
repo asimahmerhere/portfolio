@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './App.css'
 import { SkillsSection } from './components/SkillsSection'
 import { ProjectsSection } from './components/ProjectsSection'
 import { EducationSection } from './components/EducationSection'
+
+const techStack = ['MongoDB', 'Express.js', 'React.js', 'Node.js', 'Next.js', 'Nest Js', 'Tailwind CSS', 'PostgreSQL', 'RestAPI']
 
 const projects = [
   {
@@ -36,27 +38,37 @@ const experience = [
 ]
 
 function App() {
-  const [activeTech, setActiveTech] = useState('Next.js')
+  const [activeTech, setActiveTech] = useState(techStack[4])
   const [isTransitioning, setIsTransitioning] = useState(false)
-  const [displayTech, setDisplayTech] = useState('Next.js')
+  const [displayTech, setDisplayTech] = useState(techStack[4])
+  const activeIndexRef = useRef(techStack.indexOf(techStack[4]))
+  const transitionTimeoutRef = useRef(null)
 
   useEffect(() => {
-    const techStack = ['Next.js', 'React.js', 'MongoDB', 'Express.js']
-    let activeIndex = 0
-
     const interval = setInterval(() => {
-      const nextIndex = (activeIndex + 1) % techStack.length
+      const nextIndex = (activeIndexRef.current + 1) % techStack.length
+
       setDisplayTech(techStack[nextIndex])
       setIsTransitioning(true)
 
-      setTimeout(() => {
+      if (transitionTimeoutRef.current) {
+        clearTimeout(transitionTimeoutRef.current)
+      }
+
+      transitionTimeoutRef.current = setTimeout(() => {
+        activeIndexRef.current = nextIndex
         setActiveTech(techStack[nextIndex])
         setIsTransitioning(false)
-        activeIndex = nextIndex
+        transitionTimeoutRef.current = null
       }, 900)
     }, 2200)
 
-    return () => clearInterval(interval)
+    return () => {
+      clearInterval(interval)
+      if (transitionTimeoutRef.current) {
+        clearTimeout(transitionTimeoutRef.current)
+      }
+    }
   }, [])
 
   return (
