@@ -23,16 +23,14 @@ export function DiscoSection({ isClosing = false }) {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,123,84,0.14),_transparent_45%),radial-gradient(circle_at_center,_rgba(155,140,255,0.12),_transparent_60%)]" />
       <div className="relative mx-auto flex h-screen w-full max-w-7xl items-center justify-center px-2 md:px-4">
         <div className="relative h-[100vh] w-full max-w-[980px]">
-          {discoFrames.map((frame, index) => (
-            <img
-              key={frame}
-              src={`/animate/${frame}.png`}
-              alt={`Disco animation ${frame}`}
-              className={`absolute inset-0 h-full w-full object-contain transition-opacity duration-100 ease-out ${
-                activeFrame === index ? 'opacity-100' : 'opacity-0'
-              }`}
-            />
-          ))}
+          <img
+            key={discoFrames[activeFrame]}
+            src={`/animate-webp/${discoFrames[activeFrame]}.webp`}
+            alt={`Disco animation ${discoFrames[activeFrame]}`}
+            className="absolute inset-0 h-full w-full object-contain"
+            loading="eager"
+            decoding="async"
+          />
         </div>
       </div>
     </section>

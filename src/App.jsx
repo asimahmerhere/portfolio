@@ -170,11 +170,18 @@ function App() {
 
             <div className="absolute right-0 top-1/2 h-[78vw] w-[78vw] max-h-[950px] max-w-[950px] -translate-y-1/2 translate-x-1/2 rounded-full border border-white/10 bg-[radial-gradient(circle_at_30%_30%,_rgba(255,123,84,0.9),_rgba(46,11,93,0.95)_58%,_rgba(7,17,31,1)_100%)] shadow-[0_0_120px_rgba(0,0,0,0.32)]" />
 
-            <img
-              src="asim.png"
-              alt="Asim Khan"
-              className="absolute right-[-8%] top-[55%] z-10 w-[120vw] max-w-[590px] -translate-y-1/2 drop-shadow-[0_25px_60px_rgba(0,0,0,0.35)]"
-            />
+            <picture className="absolute right-[-8%] top-[55%] z-10 w-[120vw] max-w-[590px] -translate-y-1/2 drop-shadow-[0_25px_60px_rgba(0,0,0,0.35)]">
+              <source srcSet="/asim.webp" type="image/webp" />
+              <img
+                src="/asim.png"
+                alt="Asim Khan"
+                className="h-auto w-full"
+                fetchPriority="high"
+                decoding="async"
+                width="590"
+                height="720"
+              />
+            </picture>
           </section>
 
           <SkillsSection />
