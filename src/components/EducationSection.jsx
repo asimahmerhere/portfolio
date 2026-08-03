@@ -2,7 +2,7 @@ const educationItems = [
   {
     degree: 'BS Information Technology',
     university: 'Bahria University Pakistan',
-    logo: '/bahria.jpg',
+    logo: '/bahria.png',
     duration: 'Spring 2022 - Fall 2025',
     description:
       'Focused on core IT concepts including programming, database, networking and software engineering with hands on academic projects and practical lab work.',
@@ -14,6 +14,14 @@ const educationItems = [
     duration: 'Nov 2024 - Feb 2026',
     description:
       'Modern web and mobile development technologies with practical training in building responsive applications and real world development projects.',
+  },
+   {
+    degree: 'Mobile App Development',
+    university: 'NED Academy',
+    logo: '/ned.png',
+    duration: 'Sep 2024 - Nov 2024',
+  description:
+  'Comprehensive training in modern web and mobile app development, covering responsive design, full-stack technologies, and real-world projects that emphasize clean code, problem-solving and industry best practices.',
   },
 ]
 
@@ -37,7 +45,7 @@ export function EducationSection() {
                 <div>
                   <header>
                     <h2 className="text-xl md:text-3xl font-bold font-fjalla-one text-white mb-3">
-                      About Me<span className="select-none text-white">|</span>
+                      About Me
                     </h2>
                   </header>
                   <div className="flex justify-start gap-3">
@@ -55,7 +63,7 @@ export function EducationSection() {
                 <div>
                   <header>
                     <h2 className="text-xl md:text-3xl font-bold font-fjalla-one text-white mb-3">
-                      Studied<span className="select-none text-white">|</span>
+                      Studied
                     </h2>
                   </header>
                   <div className="flex flex-wrap justify-start gap-3">
@@ -76,7 +84,7 @@ export function EducationSection() {
               <div>
                 <header>
                   <h2 className="text-xl md:text-3xl font-bold font-fjalla-one text-white mb-3">
-                    Education<span className="select-none text-white">|</span>
+                    Education
                   </h2>
                 </header>
 
