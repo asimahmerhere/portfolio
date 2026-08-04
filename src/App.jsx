@@ -7,6 +7,8 @@ import { DiscoSection } from './components/DiscoSection'
 
 const techStack = ['MongoDB', 'Express.js', 'React.js', 'Node.js', 'Next.js', 'Nest Js', 'Tailwind CSS', 'PostgreSQL', 'RestAPI']
 
+const CROSSFADE_MS = 900 // must match the duration-[900ms] classes below
+
 const projects = [
   {
     title: 'E-commerce Platform',
@@ -69,39 +71,49 @@ function App() {
     }
   }, [])
 
+  const indexRef = useRef(4) // starting index, matches techStack[4]
+  const [layerA, setLayerA] = useState(techStack[4])
+  const [layerB, setLayerB] = useState(techStack[(4 + 1) % techStack.length])
+  const [activeLayer, setActiveLayer] = useState('A') // which one is currently visible
+  const wordTimeoutRef = useRef(null)
+
   useEffect(() => {
     const interval = setInterval(() => {
-      const nextIndex = (activeIndexRef.current + 1) % techStack.length
+      const nextIndex = (indexRef.current + 1) % techStack.length
+      indexRef.current = nextIndex
 
-      setDisplayTech(techStack[nextIndex])
-      setIsTransitioning(true)
+      // 1. Flip visibility now. The incoming (currently hidden) layer
+      //    already holds the correct word from the previous cycle's
+      //    preload, so it fades in showing the right text right away.
+      setActiveLayer(prev => (prev === 'A' ? 'B' : 'A'))
 
-      if (transitionTimeoutRef.current) {
-        clearTimeout(transitionTimeoutRef.current)
-      }
-
-      transitionTimeoutRef.current = setTimeout(() => {
-        activeIndexRef.current = nextIndex
-        setActiveTech(techStack[nextIndex])
-        setIsTransitioning(false)
-        transitionTimeoutRef.current = null
-      }, 900)
+      // 2. Only AFTER the outgoing layer has fully faded out do we
+      //    overwrite its text — with the word after next — so it's
+      //    ready to be the next thing that fades in.
+      wordTimeoutRef.current = setTimeout(() => {
+        const followingWord = techStack[(nextIndex + 1) % techStack.length]
+        setActiveLayer(current => {
+          if (current === 'B') {
+            setLayerA(followingWord) // A is hidden now, safe to update
+          } else {
+            setLayerB(followingWord) // B is hidden now, safe to update
+          }
+          return current
+        })
+      }, CROSSFADE_MS)
     }, 2200)
 
     return () => {
       clearInterval(interval)
-      if (transitionTimeoutRef.current) {
-        clearTimeout(transitionTimeoutRef.current)
-      }
+      clearTimeout(wordTimeoutRef.current)
     }
   }, [])
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-[#07111f] text-white">
       <div
-        className={`absolute inset-0 z-20 transition-all duration-700 ease-in-out ${
-          introState === 'home' ? 'pointer-events-none opacity-0 scale-[1.03] blur-[3px]' : 'opacity-100 scale-100'
-        }`}
+        className={`absolute inset-0 z-20 transition-all duration-700 ease-in-out ${introState === 'home' ? 'pointer-events-none opacity-0 scale-[1.03] blur-[3px]' : 'opacity-100 scale-100'
+          }`}
       >
         <DiscoSection isClosing={introState === 'closing'} />
       </div>
@@ -124,14 +136,16 @@ function App() {
 
               <div className="relative mt-4 h-12 sm:h-14 lg:h-16">
                 <span
-                  className={`absolute inset-0 font-bebas text-3xl text-[#d8cfff] transition-all duration-[900ms] ease-out sm:text-4xl lg:text-5xl ${isTransitioning ? 'scale-95 opacity-0 blur-[4px]' : 'scale-100 opacity-100 blur-0'}`}
+                  className={`absolute inset-0 font-bebas text-3xl text-[#d8cfff] transition-opacity duration-[900ms] ease-out sm:text-4xl lg:text-5xl ${activeLayer === 'A' ? 'opacity-100' : 'opacity-0'
+                    }`}
                 >
-                  {activeTech}
+                  {layerA}
                 </span>
                 <span
-                  className={`absolute inset-0 font-bebas text-3xl text-[#d8cfff] transition-all duration-[900ms] ease-out sm:text-4xl lg:text-5xl ${isTransitioning ? 'scale-100 opacity-100 blur-0' : 'scale-105 opacity-0 blur-[4px]'}`}
+                  className={`absolute inset-0 font-bebas text-3xl text-[#d8cfff] transition-opacity duration-[900ms] ease-out sm:text-4xl lg:text-5xl ${activeLayer === 'B' ? 'opacity-100' : 'opacity-0'
+                    }`}
                 >
-                  {displayTech}
+                  {layerB}
                 </span>
               </div>
 
