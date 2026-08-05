@@ -111,12 +111,11 @@ function App() {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-[#07111f] text-white">
-      <div
-        className={`absolute inset-0 z-20 transition-all duration-700 ease-in-out ${introState === 'home' ? 'pointer-events-none opacity-0 scale-[1.03] blur-[3px]' : 'opacity-100 scale-100'
-          }`}
-      >
-        <DiscoSection isClosing={introState === 'closing'} />
-      </div>
+      {introState !== 'home' && (
+        <div className="absolute inset-0 z-20 transition-opacity duration-700 ease-in-out opacity-100">
+          <DiscoSection isClosing={introState === 'closing'} />
+        </div>
+      )}
 
       {introState === 'home' && (
         <div className="min-h-screen bg-[#07111f] text-white">

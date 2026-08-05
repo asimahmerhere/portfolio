@@ -16,8 +16,8 @@ export function DiscoSection({ isClosing = false }) {
   return (
     <section
       id="disco-gallery"
-      className={`relative flex h-screen w-screen items-center justify-center overflow-hidden bg-[#07111f] text-white transition-all duration-700 ease-in-out ${
-        isClosing ? 'scale-[1.04] opacity-0 blur-[3px]' : 'scale-100 opacity-100'
+      className={`relative flex h-screen w-screen items-center justify-center overflow-hidden bg-[#07111f] text-white transition-opacity duration-700 ease-in-out ${
+        isClosing ? 'opacity-0' : 'opacity-100'
       }`}
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,123,84,0.14),_transparent_45%),radial-gradient(circle_at_center,_rgba(155,140,255,0.12),_transparent_60%)]" />
